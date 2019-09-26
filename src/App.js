@@ -7,28 +7,15 @@ class App extends Component {
   constructor() {
     super();
     this.todoItems = [
-        // { title: 'Self-learn ', isComplete: true },
-        // { title: 'Do family chores'},
-        // { title: 'Learn Truth'}
+        { title: 'Self-learn ', isComplete: true },
+        { title: 'Do family chores', isComplete: true},
+        { title: 'Learn Truth', isComplete: false}
     ]
 }
   render() {
     return (
       <div className="App">
-      {/*  <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header> */}
+      
         {/* <TodoItem title='Go to school' />
         <TodoItem title='Go swimming' />
       */}
