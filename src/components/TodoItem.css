@@ -1,5 +1,9 @@
 .TodoItem {
-    color: blue;
+    font: 24px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color:#4d4d4d;
+    border: 1px solid rgb(153,153,153);
+    padding: 15px 60px 15px 15px;
+    line-height: 28px;
 }
 
 .TodoItem-complete {
