@@ -2,9 +2,14 @@
   margin: 0;
   padding: 0
 }
+.wrapper {
+  border: 1px solid rgb(153,153,153);
+  width: 550px;
+}
 .App {
   width: 100vw;
   height: 100vh;
+  border: 1px solid #EEE;
   text-align: left;
   font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
   box-shadow: rgba(0,0,0,0.03);
@@ -12,6 +17,33 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
+}
+
+.Header {
+  display: flex;
+  border-bottom: 2px solid rgb(153,153,153);
+  padding: 15px 60px 15px 15px;
+  line-height: 28px;
+  min-width: 230px;
+  max-width: 550px;
+}
+
+.Header > input {
+  margin-left: 20px;
+  width: 100%;
+  font: 24px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color:#4d4d4d;
+  border: none
+}
+
+.Header > input:focus {
+  outline: none
+}
+
+.Header > input::placeholder {
+  font-style: italic;
+  color: #e6e6e6
 }
 
 .App-logo {

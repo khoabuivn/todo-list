@@ -1,57 +1,64 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import TodoItem from './components/TodoItem';
+import checkall from './img/checkall.svg';
 
-var todoItems = [
-  { title: 'Self-learn ', isComplete: true },
-  { title: 'Do family chores', isComplete: true},
-  { title: 'Learn Truth', isComplete: false}
-];
 class App extends Component {
   constructor() {
     super();
   
     this.state = {
-      todoItems: todoItems
+      todoItems: [
+        { title: 'Self-learn ', isComplete: true },
+        { title: 'Do family chores', isComplete: true},
+        { title: 'Learn Truth', isComplete: false}
+      ]
     }
     this.onItemClick = this.onItemClick.bind(this)
-    this.dbCommit = this.dbCommit.bind(this)
   }
-  switchStatus(item) {
-    item.isComplete = !item.isComplete;
-    return item
-  } 
-  dbCommit(itemAfterModified) {
-    todoItems.map((item) => {
-      if(item.title === itemAfterModified.title) return item
-    })
-  }
-  onItemClick(e) {
-    
-    let title = e.target.innerHTML;
-    let { todoItems } = this.state;
-    let itemAfterModified = this.switchStatus(todoItems.find((item) => item.title === title));
-    this.dbCommit(itemAfterModified);
-    this.setState({
-      todoItems: todoItems
-    })
+  
+  onItemClick(item) {
+    return (event) => {
+      const isComplete = !item.isComplete;
+      const { todoItems } = this.state;
+      const index = this.state.todoItems.indexOf(item);
+      this.setState({
+        todoItems: [
+          ...this.state.todoItems.slice(0, index),
+          { 
+            ...item,
+            isComplete: isComplete
+          },
+          ...this.state.todoItems.slice(index + 1)
+        ]
+      })
+    } 
     
   }
   render() {
     const { todoItems } = this.state;
     return (
       <div className="App">
-      
+        
         {/* <TodoItem title='Go to school' />
         <TodoItem title='Go swimming' />
       */}
+      <div className="wrapper">
+        <div className="Header">
+          <img src={checkall} width={32}/>
+          <input type="Text" placeholder="Add an item" />
+        </div>
         {
           todoItems.length > 0 && todoItems.map((item, index) => 
-            <TodoItem key = {index} item = {item} onClick = { this.onItemClick } />
+            <TodoItem 
+              key = {index} 
+              item = {item} 
+              onClick = { this.onItemClick(item) } 
+            />
           )
         }
         {  todoItems.length === 0 && "Nothing here" }
+        </div>
       </div>
     );
     }
