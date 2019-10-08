@@ -4,6 +4,8 @@
     border: 1px solid rgb(153,153,153);
     padding: 15px 60px 15px 15px;
     line-height: 28px;
+    min-width: 230px;
+    max-width: 550px;
 }
 
 .TodoItem-complete {
