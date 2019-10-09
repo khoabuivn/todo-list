@@ -8,13 +8,15 @@ class App extends Component {
     super();
   
     this.state = {
+      newItem: "",
       todoItems: [
         { title: 'Self-learn ', isComplete: true },
         { title: 'Do family chores', isComplete: true},
         { title: 'Learn Truth', isComplete: false}
       ]
     }
-    this.onItemClick = this.onItemClick.bind(this)
+    this.onKeyUp = this.onKeyUp.bind(this);
+    this.onChange = this.onChange.bind(this)
   }
   
   onItemClick(item) {
@@ -24,19 +26,45 @@ class App extends Component {
       const index = this.state.todoItems.indexOf(item);
       this.setState({
         todoItems: [
-          ...this.state.todoItems.slice(0, index),
+          ...todoItems.slice(0, index),
           { 
             ...item,
             isComplete: isComplete
           },
-          ...this.state.todoItems.slice(index + 1)
+          ...todoItems.slice(index + 1)
         ]
       })
     } 
     
   }
+
+  onKeyUp(event) {
+    if(event.keyCode === 13) {
+      let text = event.target.value;
+      if(!text) { return }
+  
+      text = text.trim();
+      if(!text) { return }
+  
+      this.setState({
+        newItem: "",
+        todoItems: [
+          { title: text, isComplete: false},
+          ...this.state.todoItems
+        ]
+      })
+
+    }
+  }
+
+  onChange(event) {
+    this.setState({
+      newItem: event.target.value,
+    })
+  }
+
   render() {
-    const { todoItems } = this.state;
+    const { todoItems, newItem } = this.state;
     return (
       <div className="App">
         
@@ -45,8 +73,14 @@ class App extends Component {
       */}
       <div className="wrapper">
         <div className="Header">
-          <img src={checkall} width={32}/>
-          <input type="Text" placeholder="Add an item" />
+          <img src={checkall} width={32} alt="logo"/>
+          <input 
+            type="Text" 
+            placeholder="Add an item" 
+            value={newItem}
+            onChange={this.onChange}
+            onKeyUp={this.onKeyUp}
+          />
         </div>
         {
           todoItems.length > 0 && todoItems.map((item, index) => 
