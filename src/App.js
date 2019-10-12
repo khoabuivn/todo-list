@@ -9,6 +9,7 @@ class App extends Component {
   
     this.state = {
       newItem: "",
+      currentFilter: "all", // all, active
       todoItems: [
         { title: 'Self-learn ', isComplete: true },
         { title: 'Do family chores', isComplete: true},
@@ -65,6 +66,7 @@ class App extends Component {
 
   render() {
     const { todoItems, newItem } = this.state;
+    let count =  todoItems.filter(item => item.isComplete === false).length;
     return (
       <div className="App">
         
@@ -92,7 +94,30 @@ class App extends Component {
           )
         }
         {  todoItems.length === 0 && "Nothing here" }
+        
+        <div className="footer">
+          <span className="todo-count">
+            {
+              count > 1 && count + " items left"
+            }
+            {
+              count <= 1 && count + " item left"
+            }
+            </span>
+          <ul className="filters">
+            <li>
+              <a className="selected">All</a>
+            </li>
+            <li>
+              <a>Active</a>
+            </li>
+            <li>
+              <a>Completed</a>
+            </li>
+          </ul>
+          <button className="clear-completed">Clear Completed</button>
         </div>
+      </div>
       </div>
     );
     }
