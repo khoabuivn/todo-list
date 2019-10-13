@@ -15,8 +15,10 @@
 
 .TodoItem > p {
     margin-left: 20px;
+    transition: all 0.7s
 }
 .TodoItem-complete > p {
     text-decoration: line-through;
     opacity: 0.3;
+    transition: all 0.5s;
 }
